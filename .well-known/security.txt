@@ -1,0 +1,7 @@
+# security.txt for https://cv-marc.mno.family
+# Standard: RFC 9116
+
+Contact: mailto:security@mno.family
+Canonical: https://cv-marc.mno.family/.well-known/security.txt
+Preferred-Languages: en, nl
+Expires: 2026-09-01T00:00:00.000Z

@@ -1,0 +1,49 @@
+# ----------------------------------------------------------------------
+# Force HTTPS and canonical domain
+# ----------------------------------------------------------------------
+RewriteEngine On
+
+# Redirect HTTP to HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ----------------------------------------------------------------------
+# Security headers
+# ----------------------------------------------------------------------
+# Prevent MIME-type sniffing
+Header always set X-Content-Type-Options "nosniff"
+
+# Basic XSS protection
+Header always set X-XSS-Protection "0"
+
+# Clickjacking protection
+Header always set X-Frame-Options "DENY"
+
+# Referrer policy (send only minimal referrer info)
+Header always set Referrer-Policy "no-referrer"
+
+# Permissions policy (formerly Feature-Policy)
+Header always set Permissions-Policy "accelerometer=(), camera=(), microphone=(), geolocation=(), gyroscope=(), magnetometer=(), payment=(), midi=(), hid=(), serial=(), screen-wake-lock=(), display-capture=(), clipboard-read=(), clipboard-write=(), autoplay=(), picture-in-picture=(), encrypted-media=(), publickey-credentials-get=(), browsing-topics=()"
+
+# Content Security Policy (CSP)
+Header always set Content-Security-Policy "default-src 'self'; script-src 'none'; img-src 'self'; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+
+# Strict Transport Security (HSTS)
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+# Cross-Origin policies (optional for small static sites)
+Header always set Cross-Origin-Resource-Policy "same-origin"
+Header always set Cross-Origin-Opener-Policy "same-origin"
+Header always set Cross-Origin-Embedder-Policy "require-corp"
+
+# ----------------------------------------------------------------------
+# Caching (static assets)
+# ----------------------------------------------------------------------
+
+<FilesMatch "\.(ico|jpg|jpeg|png|gif|webp|svg|css|js|woff2?|ttf|eot)$">
+  Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+
+<FilesMatch "\.(html|htm)$">
+  Header set Cache-Control "no-cache"
+</FilesMatch>
