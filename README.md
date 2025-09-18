@@ -2,5 +2,10 @@
 Contains my HTML resume.
 
 ## License
+
 - Code (HTML/CSS/): MIT License - feel free to reuse or adapt.
-- Content (text, profile image, CV details): ©2025 Marc ter Bogt, licensed under CC BY-NC-ND 4.0.
+
+© 2025 Marc ter Bogt. All rights reserved.
+
+The text, images, and personal data in this repository (including the CV content and profile photo) are provided for personal and professional presentation purposes only. 
+No part of this content may be reproduced, distributed, or used for any purpose other than viewing the original CV without prior written permission from Marc ter Bogt.
